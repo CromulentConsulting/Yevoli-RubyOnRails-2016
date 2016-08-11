@@ -1,0 +1,8 @@
+Exercises: https://www.railstutorial.org/book/static_pages#sec-exercises_generated_static_pages
+
+1. Generate a controller called Foo with actions bar and baz.
+- rails generate controller Foo bar baz
+
+
+2. By applying the techniques described in Box 3.1, destroy the Foo controller and its associated actions.
+- rails destroy controller Foo bar baz
