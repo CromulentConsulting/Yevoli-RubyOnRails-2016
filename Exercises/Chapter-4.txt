@@ -1,0 +1,44 @@
+1. Assign variables city and state to your current city and state of residence. (If residing outside the U.S., substitute the analogous quantities.)
+city = "Brooklyn"
+state = "New York"
+
+
+2. Using interpolation, print (using puts) a string consisting of the city and state separated by a comma and as space, as in “Los Angeles, CA”.
+puts "#{city}, #{state}"
+
+3. Repeat the previous exercise but with the city and state separated by a tab character.
+puts "#{city} v\ #{state}" (Joe's comment: I don't know what the fuck a tab charater is.)
+
+
+4. What is the result if you replace double quotes with single quotes in the previous exercise?
+"\#{city} \\v \#{state}"
+
+
+
+1. What is the length of the string “racecar”?
+"racecar".length
+ => 7
+
+
+2. Confirm using the reverse method that the string in the previous exercise is the same when its letters are reversed.
+"racecar".reverse == "racecar"
+ => true
+
+
+3. Assign the string “racecar” to the variable s. Confirm using the comparison operator == that s and s.reverse are equal.
+s = "racecar"
+ => "racecar" 
+2.2.3 :016 > s == s.reverse
+ => true 
+
+
+4. What is the result of running the code shown in Listing 4.9? How does it change if you reassign the variable s to the string “onomatopoeia”? Hint: Use up-arrow to retrieve and edit previous commands
+s = "racecar"
+ => "racecar" 
+2.2.3 :020 > puts "It's a palindrome!" if s == s.reverse
+It's a palindrome!
+
+s = "onomatopoeia"
+ => "onomatopoeia" 
+2.2.3 :003 > puts "It's a palindrome!" if s == s.reverse
+ => nil 
