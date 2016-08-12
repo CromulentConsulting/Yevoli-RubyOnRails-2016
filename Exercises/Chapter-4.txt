@@ -77,3 +77,28 @@ Listing 4.10
 >>     puts "It's not a palindrome."
 >>   end
 >> end
+
+
+
+
+1. Assign a to be to the result of splitting the string “A man, a plan, a canal, Panama” on comma-space.
+a = "A man, a plan, a canal, Panama".split(', ')
+ => ["A man", "a plan", "a canal", "Panama"] 
+
+2. Assign s to the string resulting from joining a on nothing.
+s = a.join
+ => "A mana plana canalPanama"
+
+3. Split s on whitespace and rejoin on nothing. Use the palindrome test from Listing 4.10 to confirm that the resulting string s is not a palindrome by the current definition. Using the downcase method, show that s.downcase is a palindrome.
+s.split(' ').join == s.split(' ').join.reverse
+ => false 
+2.2.3 :043 > s.split(' ').join.downcase == s.split(' ').join.reverse.downcase
+ => true 
+
+
+4. What is the result of selecting element 7 from the range of letters a through z? What about the same range reversed? Hint: In both cases you will have to convert the range to an array.
+a = ('a'..'z').to_a
+ => ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"] 
+2.2.3 :045 > a[7]
+ => "h" 
+
