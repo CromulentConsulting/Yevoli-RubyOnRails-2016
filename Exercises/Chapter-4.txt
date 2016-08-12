@@ -42,3 +42,38 @@ s = "onomatopoeia"
  => "onomatopoeia" 
 2.2.3 :003 > puts "It's a palindrome!" if s == s.reverse
  => nil 
+
+
+1. By replacing FILL_IN with the appropriate comparison test shown in Listing 4.10, define a method for testing palindromes. Hint: Use the comparison shown in Listing 4.9.
+def palindrome_tester(s)
+2.2.3 :011?>   if s == s.reverse
+2.2.3 :012?>     puts "It's a palindrome!"
+2.2.3 :013?>     else
+2.2.3 :014 >       puts "It's not a palindrome."
+2.2.3 :015?>     end
+2.2.3 :016?>   end
+ => :palindrome_tester 
+
+2. By running your palindrome tester on “racecar” and “onomatopoeia”, confirm that the first is a palindrome and the second isn’t.
+palindrome_tester("racecar")
+It's a palindrome!
+ => nil 
+2.2.3 :018 > palindrome_tester("onomatopoeia")
+It's not a palindrome.
+ => nil
+
+3. By calling the nil? method on palindrome_tester("racecar"), confirm that its return value is nil (i.e., calling nil? on the result of the method should return true). This is because the code in Listing 4.10 prints its responses instead of returning them.
+palindrome_tester("racecar").nil?
+It's a palindrome!
+ => true 
+
+
+
+Listing 4.10
+>> def palindrome_tester(s)
+>>   if FILL_IN
+>>     puts "It's a palindrome!"
+>>   else
+>>     puts "It's not a palindrome."
+>>   end
+>> end
