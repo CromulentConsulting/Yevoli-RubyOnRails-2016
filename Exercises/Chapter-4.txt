@@ -209,3 +209,50 @@ EXAMPLE:  { "a" => 100, "b" => 200 }.merge({ "b" => 300 })
 
 
 
+1. What is the literal constructor for the range of integers from 1 to 10?
+015 > s = (1..10)
+ => 1..10 
+2.2.3 :016 > s.each do |i|
+2.2.3 :017 >     puts i
+2.2.3 :018?>   end
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+ => 1..10 
+
+
+
+
+2. What is the constructor using the Range class and the new method? Hint: new takes two arguments in this context.
+a = Range.new(1,10)
+ => 1..10 
+2.2.3 :008 > a
+ => 1..10 
+2.2.3 :009 > a.each do |i|
+2.2.3 :010 >     puts i
+2.2.3 :011?>   end
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+ => 1..10 
+
+
+3. Confirm using the == operator that the literal and named constructors from the previous two exercises are identical.
+2.2.3 :020 > a == s
+ => true 
+
+
