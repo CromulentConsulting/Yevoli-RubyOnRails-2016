@@ -101,4 +101,70 @@ a = ('a'..'z').to_a
  => ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"] 
 2.2.3 :045 > a[7]
  => "h" 
+ 
+ 
+ 
+ 
+ 
+1. Using the range 0..16, print out the first 17 powers of 2.
+2.2.3 :021 > (0..16).each do |i|
+2.2.3 :022 >     puts i**2
+2.2.3 :023?>   end
+0
+1
+4
+9
+16
+25
+36
+49
+64
+81
+100
+121
+144
+169
+196
+225
+256
+ => 0..16 
 
+
+2. Define a method called yeller that takes in an array of characters and returns a string with an ALLCAPS version of the input. Verify that yeller([’o’, ’l’, ’d’]) returns "OLD". Hint: Combine map, upcase, and join.
+2.2.3 :001 > def yeller(s)
+2.2.3 :002?>   s.map(&:upcase).join
+2.2.3 :003?>   end
+ => :yeller 
+2.2.3 :004 > yeller(['o','l','d'])
+ => "OLD" 
+
+NOTE TO SPINOSA: I have no idea why this worked and the below method didn't.
+
+def yeller(s)
+ s.map.upcase.join
+end
+
+
+3. Define a method called random_subdomain that returns a randomly generated string of eight letters.
+def random_subdomain
+2.2.3 :006?>   ('a'..'z').to_a.shuffle[0..7].join.to_s
+2.2.3 :007?>   end
+ => :random_subdomain
+ => "gescyidp"
+
+
+4. By replacing the question marks in Listing 4.12 with the appropriate methods, combine split, shuffle, and join to write a function that shuffles the letters in a given string.
+
+def string_shuffle(s)
+2.2.3 :014?>   s.split('').shuffle.join
+2.2.3 :015?>   end
+ => :string_shuffle 
+2.2.3 :016 > string_shuffle("foobar")
+ => "afbroo" 
+
+ORIGINAL
+>> def string_shuffle(s)
+>>   s.?('').?.?
+>> end
+>> string_shuffle("foobar")
+=> "oobfra
