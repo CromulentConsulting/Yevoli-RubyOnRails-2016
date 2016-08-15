@@ -168,3 +168,44 @@ ORIGINAL
 >> end
 >> string_shuffle("foobar")
 => "oobfra
+
+
+
+1. Define a hash with the keys ’one’, ’two’, and ’three’, and the values ’uno’, ’dos’, and ’tres’. Iterate over the hash, and for each key/value pair print out "’#key’ in Spanish is ’#value’".
+
+hash.each do |eng, span|
+2.2.3 :005 >     puts "#{eng} in spanish is #{span}."
+2.2.3 :006?>   end
+one in spanish is uno.
+two in spanish is dos.
+three in spanish is tres.
+ => {:one=>"uno", :two=>"dos", :three=>"tres"}
+
+2. Create three hashes called person1, person2, and person3, with first and last names under the keys :first and :last. Then create a params hash so that params[:father] is person1, params[:mother] is person2, and params[:child] is person3. Verify that, for example, params[:father][:first] has the right value.
+person1 = { first: "Joe", last: "Yevoli" }
+
+ => {:first=>"Joe", :last=>"Yevoli"} 
+2.2.3 :002 > person2 = { first: "Beth", last: "Yevoli" }
+ => {:first=>"Beth", :last=>"Yevoli"} 
+2.2.3 :003 > person3 = { first: "Joe", last: "Yevoli Jr." }
+ => {:first=>"Joe", :last=>"Yevoli Jr."} 
+2.2.3 :004 > params = {}
+ => {} 
+2.2.3 :005 > params = { father: person1, mother: person2, child: person3 }
+ => {:father=>{:first=>"Joe", :last=>"Yevoli"}, :mother=>{:first=>"Beth", :last=>"Yevoli"}, :child=>{:first=>"Joe", :last=>"Yevoli Jr."}} 
+2.2.3 :006 > params[:father][:first]
+ => "Joe" 
+
+
+3. Define a hash with symbol keys corresponding to name, email, and a “password digest”, and values equal to your name, your email address, and a random string of 16 lower-case letters.
+006 > s = { :name => "Joe Yevoli", :email => "joe.yevoli@gmail.com", :password => ('a'..'z').to_a.shuffle[0..16].join.to_s }
+ => {:name=>"Joe Yevoli", :email=>"joe.yevoli@gmail.com", :password=>"etrnlkbjsdugifcvq"} 
+
+4. Find an online version of the Ruby API and read about the Hash method merge. What is the value of the following expression?
+{"a" => "100", "b" => "300" }
+
+
+EXAMPLE:  { "a" => 100, "b" => 200 }.merge({ "b" => 300 })
+
+
+
