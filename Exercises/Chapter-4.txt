@@ -337,6 +337,18 @@ class String
  => :shuffle 
 2.2.3 :006 > "foobar".shuffle
  => "oboafr" 
+ 
+ 
+ 
+1. Add a method to the User class called full_name that returns the first and last names separated by a space.
+Check out example_user.rb
+
+2. Add a method called alphabetical_name that returns the last name and first name separated by comma-space.
+Check out example_user.rb
+
+3. Verify that full_name.split is the same as alphabetical_name.split(’, ’).reverse
+user.full_name.split == user.alphabetical_name.split(', ').reverse
+ => true 
 
 
 
