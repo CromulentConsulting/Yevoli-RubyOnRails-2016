@@ -256,3 +256,47 @@ a = Range.new(1,10)
  => true 
 
 
+
+1. What is the class hierarchy for a range? For a hash? For a symbol?
+s = (0..10)
+ => 0..10 
+2.2.3 :014 > s.class
+ => Range 
+2.2.3 :015 > s.class.superclass
+ => Object 
+2.2.3 :016 > s.class.superclass.superclass
+ => BasicObject 
+ 
+ a = {}
+  => {} 
+ 2.2.3 :018 > a = { :name => "Joe Yevoli" }
+  => {:name=>"Joe Yevoli"} 
+ 2.2.3 :019 > a.class
+  => Hash 
+ 2.2.3 :020 > a.class.superclass
+  => Object 
+ 2.2.3 :021 > a.class.superclass.superclass
+  => BasicObject 
+ 2.2.3 :022 > :name.class
+  => Symbol 
+ 2.2.3 :023 > :name.class.superclass
+  => Object 
+ 2.2.3 :024 > :name.class.superclass.superclass
+  => BasicObject
+
+2. Confirm that the method shown in Listing 4.15 works even if we replace self.reverse with just reverse.
+class Word < String
+2.2.3 :026?>   def palindrome?
+2.2.3 :027?>     self == reverse
+2.2.3 :028?>     end
+2.2.3 :029?>   end
+ => :palindrome? 
+2.2.3 :030 > s = Word.new("level")
+ => "level" 
+2.2.3 :031 > s.palindrome?
+ => true 
+
+
+
+
+
