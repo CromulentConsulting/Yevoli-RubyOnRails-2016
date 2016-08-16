@@ -297,6 +297,48 @@ class Word < String
  => true 
 
 
+1. Verify that “racecar” is a palindrome and “onomatopoeia” is not. What about the name of the South Indian language “Malayalam”? Hint: Downcase it first.
+class String
+2.2.3 :009?>   def palindrome?
+2.2.3 :010?>     self == reverse
+2.2.3 :011?>     end
+2.2.3 :012?>   end
+2.2.3 :014?> => :palindrome? 
+"racecar".palindrome?
+ => true 
+2.2.3 :015 > "onomatopoeia".palindrome?
+ => false 
+2.2.3 :016 > "Malayalam".downcase.palindrome?
+ => true 
+
+
+
+2. Using Listing 4.16 as a guide, add a shuffle method to the String class. Hint: Refer to Listing 4.12.
+
+class String
+2.2.3 :018?>   def shuffle
+2.2.3 :019?>     self.split('').shuffle.join
+2.2.3 :020?>     end
+2.2.3 :021?>   end
+ => :shuffle 
+2.2.3 :022 > "foobar".shuffle
+ => "faobro" 
+
+
+
+
+3. Verify that Listing 4.16 works even if you remove self..
+
+class String
+2.2.3 :002?>   def shuffle
+2.2.3 :003?>     split('').shuffle.join
+2.2.3 :004?>     end
+2.2.3 :005?>   end
+ => :shuffle 
+2.2.3 :006 > "foobar".shuffle
+ => "oboafr" 
+
+
 
 
 
