@@ -5,13 +5,19 @@ state = "New York"
 
 2. Using interpolation, print (using puts) a string consisting of the city and state separated by a comma and as space, as in “Los Angeles, CA”.
 puts "#{city}, #{state}"
+Brooklyn, NY
+
 
 3. Repeat the previous exercise but with the city and state separated by a tab character.
-puts "#{city} v\ #{state}" (Joe's comment: I don't know what the fuck a tab charater is.)
+puts "#{city}\t #{state}"
+Brooklyn	 NY
+
 
 
 4. What is the result if you replace double quotes with single quotes in the previous exercise?
-"\#{city} \\v \#{state}"
+puts '#{city}\t #{state}'
+#{city}\t #{state}
+
 
 
 
