@@ -150,6 +150,11 @@ def yeller(s)
  s.map.upcase.join
 end
 
+**Joe's additionally clarification: .map is a function that takes
+input and executes code on that input to return the result of the
+code on that input.  The reason why s.map.upcase.join didn't work
+is because .upcase is an undefined method for the enumerator class.**
+
 
 3. Define a method called random_subdomain that returns a randomly generated string of eight letters.
 def random_subdomain
