@@ -1,0 +1,367 @@
+1. Assign variables city and state to your current city and state of residence. (If residing outside the U.S., substitute the analogous quantities.)
+city = "Brooklyn"
+state = "New York"
+
+
+2. Using interpolation, print (using puts) a string consisting of the city and state separated by a comma and as space, as in “Los Angeles, CA”.
+puts "#{city}, #{state}"
+Brooklyn, NY
+
+
+3. Repeat the previous exercise but with the city and state separated by a tab character.
+puts "#{city}\t #{state}"
+Brooklyn	 NY
+
+
+
+4. What is the result if you replace double quotes with single quotes in the previous exercise?
+puts '#{city}\t #{state}'
+#{city}\t #{state}
+
+
+
+
+1. What is the length of the string “racecar”?
+"racecar".length
+ => 7
+
+
+2. Confirm using the reverse method that the string in the previous exercise is the same when its letters are reversed.
+"racecar".reverse == "racecar"
+ => true
+
+
+3. Assign the string “racecar” to the variable s. Confirm using the comparison operator == that s and s.reverse are equal.
+s = "racecar"
+ => "racecar" 
+2.2.3 :016 > s == s.reverse
+ => true 
+
+
+4. What is the result of running the code shown in Listing 4.9? How does it change if you reassign the variable s to the string “onomatopoeia”? Hint: Use up-arrow to retrieve and edit previous commands
+s = "racecar"
+ => "racecar" 
+2.2.3 :020 > puts "It's a palindrome!" if s == s.reverse
+It's a palindrome!
+
+s = "onomatopoeia"
+ => "onomatopoeia" 
+2.2.3 :003 > puts "It's a palindrome!" if s == s.reverse
+ => nil 
+
+
+1. By replacing FILL_IN with the appropriate comparison test shown in Listing 4.10, define a method for testing palindromes. Hint: Use the comparison shown in Listing 4.9.
+def palindrome_tester(s)
+2.2.3 :011?>   if s == s.reverse
+2.2.3 :012?>     puts "It's a palindrome!"
+2.2.3 :013?>     else
+2.2.3 :014 >       puts "It's not a palindrome."
+2.2.3 :015?>     end
+2.2.3 :016?>   end
+ => :palindrome_tester 
+
+2. By running your palindrome tester on “racecar” and “onomatopoeia”, confirm that the first is a palindrome and the second isn’t.
+palindrome_tester("racecar")
+It's a palindrome!
+ => nil 
+2.2.3 :018 > palindrome_tester("onomatopoeia")
+It's not a palindrome.
+ => nil
+
+3. By calling the nil? method on palindrome_tester("racecar"), confirm that its return value is nil (i.e., calling nil? on the result of the method should return true). This is because the code in Listing 4.10 prints its responses instead of returning them.
+palindrome_tester("racecar").nil?
+It's a palindrome!
+ => true 
+
+
+
+Listing 4.10
+>> def palindrome_tester(s)
+>>   if FILL_IN
+>>     puts "It's a palindrome!"
+>>   else
+>>     puts "It's not a palindrome."
+>>   end
+>> end
+
+
+
+
+1. Assign a to be to the result of splitting the string “A man, a plan, a canal, Panama” on comma-space.
+a = "A man, a plan, a canal, Panama".split(', ')
+ => ["A man", "a plan", "a canal", "Panama"] 
+
+2. Assign s to the string resulting from joining a on nothing.
+s = a.join
+ => "A mana plana canalPanama"
+
+3. Split s on whitespace and rejoin on nothing. Use the palindrome test from Listing 4.10 to confirm that the resulting string s is not a palindrome by the current definition. Using the downcase method, show that s.downcase is a palindrome.
+s.split(' ').join == s.split(' ').join.reverse
+ => false 
+2.2.3 :043 > s.split(' ').join.downcase == s.split(' ').join.reverse.downcase
+ => true 
+
+
+4. What is the result of selecting element 7 from the range of letters a through z? What about the same range reversed? Hint: In both cases you will have to convert the range to an array.
+a = ('a'..'z').to_a
+ => ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"] 
+2.2.3 :045 > a[7]
+ => "h" 
+ 
+ 
+ 
+ 
+ 
+1. Using the range 0..16, print out the first 17 powers of 2.
+2.2.3 :021 > (0..16).each do |i|
+2.2.3 :022 >     puts i**2
+2.2.3 :023?>   end
+0
+1
+4
+9
+16
+25
+36
+49
+64
+81
+100
+121
+144
+169
+196
+225
+256
+ => 0..16 
+
+
+2. Define a method called yeller that takes in an array of characters and returns a string with an ALLCAPS version of the input. Verify that yeller([’o’, ’l’, ’d’]) returns "OLD". Hint: Combine map, upcase, and join.
+2.2.3 :001 > def yeller(s)
+2.2.3 :002?>   s.map(&:upcase).join
+2.2.3 :003?>   end
+ => :yeller 
+2.2.3 :004 > yeller(['o','l','d'])
+ => "OLD" 
+
+NOTE TO SPINOSA: I have no idea why this worked and the below method didn't.
+
+def yeller(s)
+ s.map.upcase.join
+end
+
+**Joe's additionally clarification: .map is a function that takes
+input and executes code on that input to return the result of the
+code on that input.  The reason why s.map.upcase.join didn't work
+is because .upcase is an undefined method for the enumerator class.**
+
+
+3. Define a method called random_subdomain that returns a randomly generated string of eight letters.
+def random_subdomain
+2.2.3 :006?>   ('a'..'z').to_a.shuffle[0..7].join.to_s
+2.2.3 :007?>   end
+ => :random_subdomain
+ => "gescyidp"
+
+
+4. By replacing the question marks in Listing 4.12 with the appropriate methods, combine split, shuffle, and join to write a function that shuffles the letters in a given string.
+
+def string_shuffle(s)
+2.2.3 :014?>   s.split('').shuffle.join
+2.2.3 :015?>   end
+ => :string_shuffle 
+2.2.3 :016 > string_shuffle("foobar")
+ => "afbroo" 
+
+ORIGINAL
+>> def string_shuffle(s)
+>>   s.?('').?.?
+>> end
+>> string_shuffle("foobar")
+=> "oobfra
+
+
+
+1. Define a hash with the keys ’one’, ’two’, and ’three’, and the values ’uno’, ’dos’, and ’tres’. Iterate over the hash, and for each key/value pair print out "’#key’ in Spanish is ’#value’".
+
+hash.each do |eng, span|
+2.2.3 :005 >     puts "#{eng} in spanish is #{span}."
+2.2.3 :006?>   end
+one in spanish is uno.
+two in spanish is dos.
+three in spanish is tres.
+ => {:one=>"uno", :two=>"dos", :three=>"tres"}
+
+2. Create three hashes called person1, person2, and person3, with first and last names under the keys :first and :last. Then create a params hash so that params[:father] is person1, params[:mother] is person2, and params[:child] is person3. Verify that, for example, params[:father][:first] has the right value.
+person1 = { first: "Joe", last: "Yevoli" }
+
+ => {:first=>"Joe", :last=>"Yevoli"} 
+2.2.3 :002 > person2 = { first: "Beth", last: "Yevoli" }
+ => {:first=>"Beth", :last=>"Yevoli"} 
+2.2.3 :003 > person3 = { first: "Joe", last: "Yevoli Jr." }
+ => {:first=>"Joe", :last=>"Yevoli Jr."} 
+2.2.3 :004 > params = {}
+ => {} 
+2.2.3 :005 > params = { father: person1, mother: person2, child: person3 }
+ => {:father=>{:first=>"Joe", :last=>"Yevoli"}, :mother=>{:first=>"Beth", :last=>"Yevoli"}, :child=>{:first=>"Joe", :last=>"Yevoli Jr."}} 
+2.2.3 :006 > params[:father][:first]
+ => "Joe" 
+
+
+3. Define a hash with symbol keys corresponding to name, email, and a “password digest”, and values equal to your name, your email address, and a random string of 16 lower-case letters.
+006 > s = { :name => "Joe Yevoli", :email => "joe.yevoli@gmail.com", :password => ('a'..'z').to_a.shuffle[0..16].join.to_s }
+ => {:name=>"Joe Yevoli", :email=>"joe.yevoli@gmail.com", :password=>"etrnlkbjsdugifcvq"} 
+
+4. Find an online version of the Ruby API and read about the Hash method merge. What is the value of the following expression?
+{"a" => "100", "b" => "300" } <--- That's my answer.
+
+
+EXAMPLE:  { "a" => 100, "b" => 200 }.merge({ "b" => 300 })
+
+
+
+1. What is the literal constructor for the range of integers from 1 to 10?
+015 > s = (1..10)
+ => 1..10 
+2.2.3 :016 > s.each do |i|
+2.2.3 :017 >     puts i
+2.2.3 :018?>   end
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+ => 1..10 
+
+
+
+
+2. What is the constructor using the Range class and the new method? Hint: new takes two arguments in this context.
+a = Range.new(1,10)
+ => 1..10 
+2.2.3 :008 > a
+ => 1..10 
+2.2.3 :009 > a.each do |i|
+2.2.3 :010 >     puts i
+2.2.3 :011?>   end
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+ => 1..10 
+
+
+3. Confirm using the == operator that the literal and named constructors from the previous two exercises are identical.
+2.2.3 :020 > a == s
+ => true 
+
+
+
+1. What is the class hierarchy for a range? For a hash? For a symbol?
+s = (0..10)
+ => 0..10 
+2.2.3 :014 > s.class
+ => Range 
+2.2.3 :015 > s.class.superclass
+ => Object 
+2.2.3 :016 > s.class.superclass.superclass
+ => BasicObject 
+ 
+ a = {}
+  => {} 
+ 2.2.3 :018 > a = { :name => "Joe Yevoli" }
+  => {:name=>"Joe Yevoli"} 
+ 2.2.3 :019 > a.class
+  => Hash 
+ 2.2.3 :020 > a.class.superclass
+  => Object 
+ 2.2.3 :021 > a.class.superclass.superclass
+  => BasicObject 
+ 2.2.3 :022 > :name.class
+  => Symbol 
+ 2.2.3 :023 > :name.class.superclass
+  => Object 
+ 2.2.3 :024 > :name.class.superclass.superclass
+  => BasicObject
+
+2. Confirm that the method shown in Listing 4.15 works even if we replace self.reverse with just reverse.
+class Word < String
+2.2.3 :026?>   def palindrome?
+2.2.3 :027?>     self == reverse
+2.2.3 :028?>     end
+2.2.3 :029?>   end
+ => :palindrome? 
+2.2.3 :030 > s = Word.new("level")
+ => "level" 
+2.2.3 :031 > s.palindrome?
+ => true 
+
+
+1. Verify that “racecar” is a palindrome and “onomatopoeia” is not. What about the name of the South Indian language “Malayalam”? Hint: Downcase it first.
+class String
+2.2.3 :009?>   def palindrome?
+2.2.3 :010?>     self == reverse
+2.2.3 :011?>     end
+2.2.3 :012?>   end
+2.2.3 :014?> => :palindrome? 
+"racecar".palindrome?
+ => true 
+2.2.3 :015 > "onomatopoeia".palindrome?
+ => false 
+2.2.3 :016 > "Malayalam".downcase.palindrome?
+ => true 
+
+
+
+2. Using Listing 4.16 as a guide, add a shuffle method to the String class. Hint: Refer to Listing 4.12.
+
+class String
+2.2.3 :018?>   def shuffle
+2.2.3 :019?>     self.split('').shuffle.join
+2.2.3 :020?>     end
+2.2.3 :021?>   end
+ => :shuffle 
+2.2.3 :022 > "foobar".shuffle
+ => "faobro" 
+
+
+
+
+3. Verify that Listing 4.16 works even if you remove self..
+
+class String
+2.2.3 :002?>   def shuffle
+2.2.3 :003?>     split('').shuffle.join
+2.2.3 :004?>     end
+2.2.3 :005?>   end
+ => :shuffle 
+2.2.3 :006 > "foobar".shuffle
+ => "oboafr" 
+ 
+ 
+ 
+1. Add a method to the User class called full_name that returns the first and last names separated by a space.
+Check out example_user.rb
+
+2. Add a method called alphabetical_name that returns the last name and first name separated by comma-space.
+Check out example_user.rb
+
+3. Verify that full_name.split is the same as alphabetical_name.split(’, ’).reverse
+user.full_name.split == user.alphabetical_name.split(', ').reverse
+ => true 
+
+
+
+
+
