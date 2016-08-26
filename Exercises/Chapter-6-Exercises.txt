@@ -1,0 +1,87 @@
+1. In a Rails console, use the technique from Section 4.4.4 to confirm that User.new is of class User and inherits from ApplicationRecord.
+s = User.new
+ => #<User id: nil, name: nil, email: nil, created_at: nil, updated_at: nil> 
+2.2.3 :002 > s.class
+ => User(id: integer, name: string, email: string, created_at: datetime, updated_at: datetime) 
+2.2.3 :003 > s.class.superclass
+ => ApplicationRecord(abstract) 
+
+
+
+2. Confirm that ApplicationRecord inherits from ActiveRecord::Base.
+
+2.2.3 :004 > s.class.superclass.superclass
+ => ActiveRecord::Base 
+ 
+ 
+ 
+ 1. Confirm that user.name and user.email are of class String.
+2.2.3 :010 > user.name.class
+ => String 
+
+
+
+
+2. Of what class are the created_at and updated_at attributes?
+2.2.3 :011 > user.created_at.class
+ => ActiveSupport::TimeWithZone 
+ 
+ 
+ 
+ 1.  Find the user by name. Confirm that find_by_name works as well. (You will often encounter this older style of find_by in legacy Rails applications.)
+User.find_by_name("Joe Yevoli")
+  User Load (0.2ms)  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?  [["name", "Joe Yevoli"], ["LIMIT", 1]]
+ => #<User id: 1, name: "Joe Yevoli", email: "joe.yevoli@gmail.com", created_at: "2016-08-26 00:24:12", updated_at: "2016-08-26 00:24:12">  
+ 
+ 
+ 2. For most practical purposes, User.all acts like an array, but confirm that in fact it’s of class User::ActiveRecord_Relation.
+ User.all.class
+  => User::ActiveRecord_Relation
+ 
+ 
+ 3. Confirm that you can find the length of User.all by passing it the length method (Section 4.2.3). Ruby’s ability to manipulate objects based on how they 
+ act rather than on their formal class type is called duck typing, based on the aphorism that “If it looks like a duck, and it quacks like a duck, it’s probably a duck.”
+ User.all.length
+   User Load (0.1ms)  SELECT "users".* FROM "users"
+  => 2 
+ 
+ 
+ 1. Update the user’s name using assignment and a call to save.
+ user.name = "John Yevoli"
+  => "John Yevoli" 
+ 2.2.3 :034 > user
+  => #<User id: 1, name: "John Yevoli", email: "Joe", created_at: "2016-08-26 00:24:12", updated_at: "2016-08-26 00:37:54"> 
+ 2.2.3 :035 > user.save
+    (0.1ms)  SAVEPOINT active_record_1
+   SQL (0.2ms)  UPDATE "users" SET "name" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["name", "John Yevoli"], ["updated_at", 2016-08-26 00:39:57 UTC], ["id", 1]]
+    (0.1ms)  RELEASE SAVEPOINT active_record_1
+  => true
+ 
+ 
+ 2. Update the user’s email address using a call to update_attributes.
+ user.update_attributes(email: "John.yevoli@gmail.com")
+    (0.1ms)  SAVEPOINT active_record_1
+   SQL (0.2ms)  UPDATE "users" SET "email" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["email", "John.yevoli@gmail.com"], ["updated_at", 2016-08-26 00:41:23 UTC], ["id", 1]]
+    (0.1ms)  RELEASE SAVEPOINT active_record_1
+  => true 
+ 
+ 
+ 
+ 
+ 3. Confirm that you can change the magic columns directly by updating the created_at column using assignment and a save. Use the value 1.year.ago, which is a Rails way to create a timestamp one year before the present time.
+ user.created_at = 1.year.ago
+  => Wed, 26 Aug 2015 00:42:10 UTC +00:00
+  
+  
+  
+  
+1. Make a new user called u and confirm that it’s initially invalid. What are the full error messages?
+u = User.new
+ => #<User id: nil, name: nil, email: nil, created_at: nil, updated_at: nil> 
+ <main>'2.2.3 :007 > u.valid?
+  => false
+
+
+2. Confirm that u.errors.messages is a hash of errors. How would you access just the email errors?
+u.errors[:email]
+ => ["can't be blank"] 
