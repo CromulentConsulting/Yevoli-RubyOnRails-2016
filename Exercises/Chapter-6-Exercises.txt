@@ -99,3 +99,21 @@ u.errors[:email]
  => #<User id: nil, name: "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh...", email: "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm...", created_at: nil, updated_at: nil>
  
  JOE'S NOTE: This isn't what I'd expect.  I suspect I did something wrong.
+ 
+ 
+1. Confirm that a user with valid name and email still isn’t valid overall.
+User.create(name: "Joe Yevoli", email: "joe.yevoli@gmail.com")
+   (0.1ms)  SAVEPOINT active_record_1
+  User Exists (0.2ms)  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?  [["email", "joe.yevoli@gmail.com"], ["LIMIT", 1]]
+   (0.1ms)  ROLLBACK TO SAVEPOINT active_record_1
+ => #<User id: nil, name: "Joe Yevoli", email: "joe.yevoli@gmail.com", created_at: nil, updated_at: nil, password_digest: nil> 
+
+JOE'S NOTE: This wasn't what I was expecting.  I assume the "ROLLBACK TO SAVEPOINT" means there was an error?
+
+2. What are the error messages for a user with no password?
+Roll back transaction?
+
+JOE'S NOTE: This wasn't what I was expecting.  I assume the "ROLLBACK TO SAVEPOINT" means there was an error?
+
+
+ 
