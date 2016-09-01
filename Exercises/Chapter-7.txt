@@ -1,0 +1,46 @@
+1. Visit /about in your browser and use the debug information to determine the controller and action of the params hash.
+The controller is, static_pages:
+
+The action is, about
+
+
+2. In the Rails console, pull the first user out of the database and assign it to the variable user. What is the output of puts user.attributes.to_yaml? Compare this to using the y method via y user.attributes.
+puts user.attributes.to_yaml
+---
+id: 1
+name: John Yevoli
+email: john.yevoli@gmail.com
+created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: &1 2016-08-29 19:42:35.988519000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: Etc/UTC
+  time: *1
+updated_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: &2 2016-08-29 19:42:35.988519000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: Etc/UTC
+  time: *2
+password_digest: 
+ => nil 
+
+
+y user.attributes
+---
+id: 1
+name: John Yevoli
+email: john.yevoli@gmail.com
+created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: &1 2016-08-29 19:42:35.988519000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: Etc/UTC
+  time: *1
+updated_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: &2 2016-08-29 19:42:35.988519000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: Etc/UTC
+  time: *2
+password_digest: 
+ => nil 
+
+
+y seems to be a shortcut to yaml?
