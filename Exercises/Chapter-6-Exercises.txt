@@ -116,4 +116,37 @@ Roll back transaction?
 JOE'S NOTE: This wasn't what I was expecting.  I assume the "ROLLBACK TO SAVEPOINT" means there was an error?
 
 
+1. Confirm that a user with valid name and email but a too-short password isn’t valid.
+User.create(name: "Joe Yevoli", email: "peter.marry@gmail.com", password: "s", password_confirmation: "s")
+   (0.1ms)  SAVEPOINT active_record_1
+  User Exists (0.9ms)  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?  [["email", "peter.marry@gmail.com"], ["LIMIT", 1]]
+   (0.1ms)  ROLLBACK TO SAVEPOINT active_record_1
+ => #<User id: nil, name: "Joe Yevoli", email: "peter.marry@gmail.com", created_at: nil, updated_at: nil, password_digest: "$2a$10$R1hpY4iYDbzRnCWY.DUevefYnf3ZmP4MfJYfhcoy/wa...">
+
+
+2. What are the associated error messages?
+Again, I'm assuming that the error message is ROLLBACK TO SAVEPOINT
+
+
+
+1. Quit and restart the console, and then find the user created in this section.
+User.find_by(name: "Joe Yevoli")
+  User Load (0.2ms)  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?  [["name", "Joe Yevoli"], ["LIMIT", 1]]
+ => #<User id: 2, name: "Joe Yevoli", email: "joe.yevoli@gmail.com", created_at: "2016-08-31 21:14:12", updated_at: "2016-08-31 21:14:12", password_digest: "$2a$10$a6l4sKklDfN3l7uCjTjv8.RxAFnGiawPkBLV.WwkgpK...">
+
+
+2. Try changing the name by assigning a new name and calling save. Why didn’t it work?
+Because the old users don't have a password or a password confirmation yet.
+
+
+3. Update user’s name to use your name. Hint: The necessary technique is covered in Section 6.1.5.
+user.update(name: "Joe Yevoli")
+   (0.1ms)  begin transaction
+  User Exists (0.2ms)  SELECT  1 AS one FROM "users" WHERE "users"."email" IS NULL LIMIT ?  [["LIMIT", 1]]
+   (0.1ms)  rollback transaction
+ => false 
+2.2.3 :011 > user
+ => #<User id: nil, name: "Joe Yevoli", email: nil, created_at: nil, updated_at: nil, password_digest: nil> 
+
+
  
