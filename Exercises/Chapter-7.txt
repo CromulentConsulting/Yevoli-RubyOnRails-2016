@@ -44,3 +44,30 @@ password_digest:
 
 
 y seems to be a shortcut to yaml?
+
+
+
+1. Associate a Gravatar with your primary email address if you haven’t already. What is the MD5 hash associated with the image?
+email = "joe.yevoli@gmail.com"
+ => "joe.yevoli@gmail.com" 
+2.2.3 :008 > Digest::MD5::hexdigest(email.downcase)
+ => "0b26ff311d76dba0619cfe34875a7f65"
+
+
+2. Verify that the code in Listing 7.12 allows the gravatar_for helper defined in Section 7.1.4 to take an optional size parameter, allowing code like gravatar_for user, size: 50 in the view. (We’ll put this improved helper to use in Section 10.3.1.)
+Verified.
+
+
+3. The options hash used in the previous exercise is still commonly used, but as of Ruby 2.0 we can use keyword arguments instead. Confirm that the code in Listing 7.13 can be used in place of Listing 7.12. What are the diffs between the two?
+Verified.
+
+
+
+
+1. In Listing 7.15, replace :name with :nome. What error message do you get as a result?
+undefined method `nome' for #<User:0x007fb7bb2119f0>
+
+
+
+2. Confirm by replacing all occurrences of f with foobar that the name of the block variable is irrelevant as far as the result is concerned. Why might foobar nevertheless be a bad choice?
+Confirmed.  See app/views/users/show.html.erb 
