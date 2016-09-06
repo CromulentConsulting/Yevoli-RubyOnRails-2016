@@ -71,3 +71,27 @@ undefined method `nome' for #<User:0x007fb7bb2119f0>
 
 2. Confirm by replacing all occurrences of f with foobar that the name of the block variable is irrelevant as far as the result is concerned. Why might foobar nevertheless be a bad choice?
 Confirmed.  See app/views/users/show.html.erb 
+
+
+1. Confirm by changing the minimum length of passwords to 5 that the error message updates automatically as well.
+Confirmed.
+
+
+2. How does the URL on the unsubmitted signup form (Figure 7.12) compare to the URL for a submitted signup form (Figure 7.18)? Why don’t they match?
+Because we're using the users resource to do routing.  The reason why the user goes to /signup after they click the Sign up button is because
+we've explicitly told the route file to GET /signup.  In order for this to work properly we need to create a POST request to Users#create.
+
+
+1. Using the Rails console, verify that a user is in fact created when submitting valid information.
+User.create(name: "Phil", email: "phil.sarin@gmail.com", password: "foobar", password_confirmation: "foobar")
+   (0.1ms)  begin transaction
+  User Exists (0.3ms)  SELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?  [["email", "phil.sarin@gmail.com"], ["LIMIT", 1]]
+  SQL (2.7ms)  INSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest") VALUES (?, ?, ?, ?, ?)  [["name", "Phil"], ["email", "phil.sarin@gmail.com"], ["created_at", 2016-09-06 20:00:02 UTC], ["updated_at", 2016-09-06 20:00:02 UTC], ["password_digest", "$2a$10$2Gj5mdPyZGE24X01kt1eNOzfdHFSN3GstR3rqJ8I1NMVKKzeeDC4a"]]
+   (0.9ms)  commit transaction
+ => #<User id: 3, name: "Phil", email: "phil.sarin@gmail.com", created_at: "2016-09-06 20:00:02", updated_at: "2016-09-06 20:00:02", password_digest: "$2a$10$2Gj5mdPyZGE24X01kt1eNOzfdHFSN3GstR3rqJ8I1NM..."> 
+
+
+
+
+2. Confirm by updating Listing 7.28 and submitting a valid user that redirect_to user_url(@user) has the same effect as redirect_to @user.
+Confirmed.
