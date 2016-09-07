@@ -95,3 +95,26 @@ User.create(name: "Phil", email: "phil.sarin@gmail.com", password: "foobar", pas
 
 2. Confirm by updating Listing 7.28 and submitting a valid user that redirect_to user_url(@user) has the same effect as redirect_to @user.
 Confirmed.
+
+
+
+1. In the console, confirm that you can use interpolation (Section 4.2.2) to interpolate a raw symbol. For example, what is the return value of "#{:success}"?
+"#{:success}"
+ => "success" 
+
+
+
+
+2. How does the previous exercise relate to the flash iteration shown in Listing 7.30?
+:success is a symbol but embedded ruby automatically converts it to a string before inserting into a template.
+
+
+1. Using the Rails console, find by the email address to double-check that the new user was actually created. The result should look something like Listing 7.32.
+User.find_by(email: "example@railstutorial.org")
+  User Load (0.2ms)  SELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?  [["email", "example@railstutorial.org"], ["LIMIT", 1]]
+ => #<User id: 1, name: "Rails Tutorial", email: "example@railstutorial.org", created_at: "2016-09-07 21:00:09", updated_at: "2016-09-07 21:00:09", password_digest: "$2a$10$HVQvB0vTlLs49PbQWu5V8uxLKPwn.rFccvGxRW6TVb5..."> 
+2.2.3 :003 > 
+
+
+2. Create a new user with your primary email address. Verify that the Gravatar correctly appears.
+Confirmed.
