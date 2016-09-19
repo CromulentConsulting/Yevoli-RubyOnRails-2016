@@ -1,0 +1,27 @@
+1. Log in with a valid user and inspect your browser’s cookies. What is the value of the session content? Hint: If you don’t know how to view your browser’s cookies, Google for it (Box 1.1).
+_sample_app_session
+
+
+1. Confirm at the console that User.find_by(id: ...) returns nil when the corresponding user doesn’t exist.
+User.find_by(id: 9)
+  User Load (0.1ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?  [["id", 9], ["LIMIT", 1]]
+ => nil
+ 
+ 
+2. In a Rails console, create a session hash with key :user_id. By following the steps in Listing 8.17, confirm that the ||= operator works as required.
+2.2.3 :005 > session = {}
+ => {} 
+2.2.3 :006 > session[:user_id] = nil
+ => nil 
+2.2.3 :007 > @current_user ||= User.find_by(id: session[:user_id])
+  User Load (0.2ms)  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?  [["LIMIT", 1]]
+ => nil 
+2.2.3 :008 > session[:user_id]= User.first.id
+  User Load (0.3ms)  SELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?  [["LIMIT", 1]]
+ => 1 
+2.2.3 :009 > @current_user ||= User.find_by(id: session[:user_id])
+  User Load (0.1ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+ => #<User id: 1, name: "Rails Tutorial", email: "example@railstutorial.org", created_at: "2016-09-07 21:00:09", updated_at: "2016-09-07 21:00:09", password_digest: "$2a$10$HVQvB0vTlLs49PbQWu5V8uxLKPwn.rFccvGxRW6TVb5..."> 
+2.2.3 :010 > @current_user ||= User.find_by(id: session[:user_id])
+ => #<User id: 1, name: "Rails Tutorial", email: "example@railstutorial.org", created_at: "2016-09-07 21:00:09", updated_at: "2016-09-07 21:00:09", password_digest: "$2a$10$HVQvB0vTlLs49PbQWu5V8uxLKPwn.rFccvGxRW6TVb5..."> 
+2.2.3 :011 >
