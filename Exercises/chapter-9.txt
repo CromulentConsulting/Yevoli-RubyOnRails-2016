@@ -1,0 +1,15 @@
+1. In the console, assign user to the first user in the database, and verify by calling it directly that the remember method works. How do remember_token and remember_digest compare?
+User.first
+  User Load (0.2ms)  SELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?  [["LIMIT", 1]]
+ => #<User id: 1, name: "Rails Tutorial", email: "example@railstutorial.org", created_at: "2016-09-07 21:00:09", updated_at: "2016-09-07 21:00:09", password_digest: "$2a$10$HVQvB0vTlLs49PbQWu5V8uxLKPwn.rFccvGxRW6TVb5...", remember_digest: nil> 
+2.2.3 :004 > user.remember
+   (0.1ms)  begin transaction
+  SQL (0.3ms)  UPDATE "users" SET "updated_at" = ?, "remember_digest" = ? WHERE "users"."id" = ?  [["updated_at", 2016-09-22 20:53:34 UTC], ["remember_digest", "$2a$10$HkkmyUSTNz0ZFT/FJg1qpOrYlHhG/2yb5NF0le.iMbC/8KEebe6ka"], ["id", 1]]
+   (1.6ms)  commit transaction
+ => true 
+ 
+ user.remember_token
+  => "OZxHq0lM35PsHbSajWh6lw"
+  
+  user.remember_digest
+   => "$2a$10$HkkmyUSTNz0ZFT/FJg1qpOrYlHhG/2yb5NF0le.iMbC/8KEebe6ka"
