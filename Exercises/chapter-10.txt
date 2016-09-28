@@ -1,0 +1,7 @@
+1. Why is it important to protect both the edit and update actions?
+Because these are actions that can change data in your database.
+
+
+
+2. Which action could you more easily test in a browser?
+The edit, since it can be accessed using a URL.
