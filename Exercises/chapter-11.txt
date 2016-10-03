@@ -1,0 +1,9 @@
+1. Create a new user at the console. What are the user’s remember and activation tokens? What are the corresponding digests?
+remember_token: nil
+activation_token: nil
+remember_digest: nil
+activation_digest: "$2a$10$nstKh4hEQF.toYnBzPLb2OAzAq4eW0XVgAUMYXYp3x8..."
+
+
+
+2. Using the generalized authenticated? method from Listing 11.26, verify that the user is authenticated according to both the remember token and the activation token.
