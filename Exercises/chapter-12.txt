@@ -1,0 +1,2 @@
+1. Why does the form_for in Listing 12.4 use :password_reset instead of @password_reset?
+Because we're calling for an attribute of the User model, not the model itself.
